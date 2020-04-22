@@ -23,6 +23,7 @@ public enum ResultCode {
 
 
     /* 用户错误：20001-29999*/
+    USER_INPUT_ERROR(20000, "用户名输入错误或验证码错误"),
     USER_NOT_SIGN_IN(20001, "请先登录"),
     USER_PASSWORD_ERROR(20002, "密码错误"),
     USER_ACCOUNT_ERROR(20003, "账号错误"),
@@ -101,5 +102,4 @@ public enum ResultCode {
     public String toString() {
         return this.name();
     }
-
 }
