@@ -21,6 +21,8 @@ public class TreeNode {
 
     private Integer parentId;
 
+    private Integer type;
+
     private String title;
 
     private String icon;
@@ -31,9 +33,10 @@ public class TreeNode {
 
     private List<TreeNode> subMenus;
 
-    public TreeNode(Integer id, Integer parentId, String title, String icon, String path, Integer sort) {
+    public TreeNode(Integer id, Integer parentId, Integer type,String title, String icon, String path, Integer sort) {
         this.id = id;
         this.parentId = parentId;
+        this.type = type;
         this.title = title;
         this.icon = icon;
         this.path = path;

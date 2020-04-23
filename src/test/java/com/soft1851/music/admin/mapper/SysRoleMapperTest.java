@@ -1,5 +1,6 @@
 package com.soft1851.music.admin.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soft1851.music.admin.entity.SysMenu;
 import com.soft1851.music.admin.entity.SysRole;
 import com.soft1851.music.admin.util.TreeBuilder;
@@ -25,6 +26,13 @@ class SysRoleMapperTest {
     private SysRoleMapper sysRoleMapper;
 
     @Test
+    void selectAll() {
+        QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
+        List<SysRole> sysRoles = sysRoleMapper.selectList(queryWrapper);
+        System.out.println(sysRoles);
+    }
+
+    @Test
     void selectRoleById() {
         SysRole sysRole = sysRoleMapper.selectRoleById(1);
         System.out.println(sysRole.getRoleName());
@@ -34,10 +42,10 @@ class SysRoleMapperTest {
         List<TreeNode> list = new ArrayList<>();
         for (SysMenu menu : menus) {
             if (menu.getParentId() == 0) {
-                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getType(),menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
                 list.add(treeNode);
             } else {
-                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(),menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
                 list.add(treeNode);
             }
         }

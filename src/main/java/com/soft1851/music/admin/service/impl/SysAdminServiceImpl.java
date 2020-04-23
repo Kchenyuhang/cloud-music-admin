@@ -27,12 +27,13 @@ import java.util.Map;
 @Service
 @Slf4j
 public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> implements SysAdminService {
+
     @Resource
     private SysAdminMapper sysAdminMapper;
 
     @Override
     public boolean login(LoginDto loginDto) {
-        SysAdmin admin1 = getAdmin(loginDto.getName());
+        SysAdmin admin1 = sysAdminMapper.getSysAdminByName(loginDto.getName());
         if (admin1 != null) {
             String pass = Md5Util.getMd5(loginDto.getPassword(), true, 32);
             if (admin1.getPassword().equals(pass)) {
@@ -48,14 +49,8 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
     }
 
     @Override
-    public SysAdmin getAdmin(String name) {
-        Map<String, Object> params = new HashMap<>(8);
-        params.put("name", name);
-        List<SysAdmin> admins = sysAdminMapper.selectByMap(params);
-        if (admins.size() > 0) {
-            return sysAdminMapper.selectByMap(params).get(0);
-        } else {
-            return null;
-        }
+    public SysAdmin getAdminAndRolesByName(String name) {
+        return sysAdminMapper.selectByName(name);
     }
+
 }

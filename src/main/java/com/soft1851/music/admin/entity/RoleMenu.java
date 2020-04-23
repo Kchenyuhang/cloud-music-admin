@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yhChen
@@ -43,12 +45,6 @@ public class RoleMenu extends Model<RoleMenu> {
      */
     @TableField("menu_id")
     private Integer menuId;
-
-    /**
-     * 角色对资源的细粒度按钮权限
-     */
-    @TableField("permissions")
-    private String permissions;
 
 
     @Override

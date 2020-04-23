@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author yhChen
- * @Description
+ * @Description 登录拦截器
+ * 可以做下参数校验、验证码有效性等
  * @Date 2020/4/21
  */
 @Slf4j
@@ -41,6 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         //取得请求的json对象
         String body = requestWrapper.getBody();
         log.info(body);
+        log.info("测试");
         //从redis取得指定用户名的验证码
         JSONObject jsonObject = JSONObject.parseObject(body);
         //判断以用户名作为key的数据是否还存在

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author yhChen
@@ -14,10 +14,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface SysRoleMapper extends BaseMapper<SysRole> {
     /**
      * 根据id查询角色，包含其所有菜单
+     *
      * @param roleId
      * @return
      */
     SysRole selectRoleById(int roleId);
-
 }
 
