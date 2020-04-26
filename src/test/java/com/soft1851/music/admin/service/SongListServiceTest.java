@@ -63,6 +63,7 @@ class SongListServiceTest {
         List<SongList> maps = songListService.blurSelect("0");
 //        System.out.println(maps);
         maps.forEach(System.out::println);
+        System.out.println(maps.size());
     }
 
 }
