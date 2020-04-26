@@ -42,15 +42,16 @@ public enum ResultCode {
     UPLOAD_ERROR(30002, "上传文件业务出现问题"),
     CAPTCHA_ERROR(30003, "验证码业务出现问题"),
     /* 数据错误：40001-49999 */
-    RESULT_CODE_DATA_NONE(50001, "数据未找到"),
-    DATA_IS_WRONG(50002, "数据有误"),
-    DATA_ALREADY_EXISTED(50003, "数据已存在"),
-    DATABASE_ERROR(50004, "数据库操作异常"),
+    RESULT_CODE_DATA_NONE(40001, "数据未找到"),
+    DATA_IS_WRONG(40002, "数据有误"),
+    DATA_ALREADY_EXISTED(40003, "数据已存在"),
+    DATABASE_ERROR(40004, "数据库操作异常"),
+    DATA_EXPORT_ERROR(40005,"歌单数据导出异常"),
 
 
     /* 服务器或系统错误：50001-599999 */
     SERVER_ERROR(50000, "服务器错误，请稍后重试"),
-    SYSTEM_ERROR(40001, "系统错误，请稍后重试"),
+    SYSTEM_ERROR(50001, "系统错误，请稍后重试"),
 
     /* 接口错误：60001-69999 */
     INTERFACE_INNER_INVOKE_ERROR(60001, "内部系统接口调用异常"),

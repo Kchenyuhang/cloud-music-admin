@@ -9,6 +9,7 @@ import com.soft1851.music.admin.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -71,5 +72,15 @@ public class JwtInterceptor implements HandlerInterceptor {
                 throw new CustomException("用户权限不足", ResultCode.PERMISSION_NO_ACCESS);
             }
         }
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
     }
 }
