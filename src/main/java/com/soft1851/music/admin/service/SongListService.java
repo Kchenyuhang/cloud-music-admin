@@ -18,58 +18,28 @@ import java.util.Map;
  */
 public interface SongListService extends IService<SongList> {
     /**
-     * 根据类型查询歌曲
-     *
+     * 查询所有歌单
+     * @return
+     */
+    List<Map<String, Object>> selectAll();
+
+    /**
+     * 分页查询
+     * @param current
+     * @param size
+     * @return
+     */
+    List<SongList> getByPage(int current, int size);
+
+    /**
+     * 根据类型分组
      * @return
      */
     List<Map<String, Object>> getByType();
 
     /**
-     * 根据（name，type）属性进行模糊查询
-     *
-     * @param field
+     * 模糊查询
      * @return
      */
-    List<SongList> blurSelect(String field);
-
-    /**
-     * 查询所有
-     * @return
-     */
-    List<SongList> selectAll();
-
-    /**
-     * 分页查询所有歌单
-     * @param pageDto
-     * @return
-     */
-    ResponseResult searchSongList(PageDto pageDto);
-
-    /**
-     * 分页查询.
-     * @param pageDto
-     * @return
-     */
-    List<SongList> getByPage(PageDto pageDto);
-
-    /**
-     * 根据id删除歌单
-     * @param id
-     * @return
-     */
-    ResponseResult deleteSongList(String id);
-
-    /**
-     *修改歌单数据
-     * @param songList
-     * @return
-     */
-    ResponseResult updateSongList(SongList songList);
-
-    /**
-     * 批量删除
-     * @param idLists
-     * @return
-     */
-    ResponseResult batchDeleteById(String idLists);
+    List<SongList> blurSelect(String filed);
 }

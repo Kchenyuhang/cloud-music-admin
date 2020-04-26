@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,58 +33,36 @@ class SongListServiceTest {
     private SongListMapper songListMapper;
 
     @Test
-    void getByType() {
-        List<Map<String,Object>> songs = songListService.getByType();
-        songs.forEach(System.out::println);
+    void selectAll() throws IOException {
+        List<Map<String, Object>> maps = songListService.selectAll();
+        System.out.println(maps.size());
+        maps.forEach(System.out::println);
     }
 
-    @Test
-    void blurSelect() {
-        String field = "CLANNAD";
-        String field1 = "0";
-        List<SongList> songs = songListService.blurSelect(field);
-        List<SongList> songs1 = songListService.blurSelect(field1);
-        System.out.println("*******根据song_list_name查询*******");
-        System.out.println(songs);
-        System.out.println("*******根据type查询*******");
-        songs1.forEach(System.out::println);
-    }
-
-    @Test
-    void selectAll() {
-        List<SongList> songs = songListMapper.selectAll();
-        songs.forEach(System.out::println);
-    }
-
-    /**
-     * 需要加分页的插件
-     */
     @Test
     void getByPage() {
-        Page<SongList> page = new Page<>(1, 5, 10);
+        Page<SongList> page = new Page<>(1, 2, 10);
         QueryWrapper<SongList> wrapper = new QueryWrapper<>(null);
         IPage<SongList> page1 = songListService.page(page, wrapper);
+//        System.out.println(page1.getRecords());
         page1.getRecords().forEach(System.out::println);
+        System.out.println("总页数" + page1.getTotal());
     }
 
     @Test
-    void searchSongList() {
-        PageDto pageDto = PageDto.builder()
-                .currentPage(1)
-                .pageSize(3)
-                .field("0")
-                .build();
-        ResponseResult result = songListService.searchSongList(pageDto);
-        System.out.println(result);
-
+    void getByType() {
+        List<Map<String, Object>> maps = new ArrayList<>();
+        maps = songListService.getByType();
+        for (Map<String, Object> map : maps) {
+            System.out.println(map);
+        }
     }
 
-    /**
-     * 批量删除
-     */
     @Test
-    void batchDeleteById() {
-        String id = "100305590,101928470";
-        songListService.batchDeleteById(id);
+    void getBlurSelect() {
+        List<SongList> maps = songListService.blurSelect("0");
+//        System.out.println(maps);
+        maps.forEach(System.out::println);
     }
+
 }

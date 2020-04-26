@@ -2,22 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.soft1851.music.admin.mapper.SongListMapper">
 
-<!--    <resultMap id="songListMapper" type="com.soft1851.music.admin.entity.SongList">-->
-<!--        <result column="song_list_id" property="songListId" javaType="java.lang.String"/>-->
-<!--        <result column="song_list_name" property="songListName" javaType="java.lang.String"/>-->
-<!--        <result column="thumbnail" property="thumbnail" javaType="java.lang.String"/>-->
-<!--        <result column="type" property="type" javaType="java.lang.String"/>-->
-<!--        <result column="song_count" property="songCount" javaType="java.lang.Integer"/>-->
-<!--        <result column="like_count" property="likeCount" javaType="java.lang.Integer"/>-->
-<!--        <result column="comment_count" property="commentCount" javaType="java.lang.Integer"/>-->
-<!--        <result column="delete_flag" property="deleteFlag" javaType="java.lang.Integer"/>-->
-<!--        <result column="update_time" property="updateTime" javaType="java.time.LocalDateTime"/>-->
-<!--        <result column="create_time" property="createTime" javaType="java.time.LocalDateTime"/>-->
-<!--        <result column="play_counts" property="playCounts" javaType="java.lang.Integer"/>-->
-<!--    </resultMap>-->
-
-<!--    <select id="selectAll" resultType="songListMapper">-->
-<!--        SELECT * FROM song_list-->
-<!--    </select>-->
+    <select id="getSongListByPage" resultType="map">
+    </select>
 
 </mapper>

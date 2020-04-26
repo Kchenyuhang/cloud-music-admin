@@ -1,13 +1,15 @@
 package com.soft1851.music.admin.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -22,6 +24,9 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("song")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Song extends Model<Song> {
 
     private static final long serialVersionUID = 1L;
@@ -29,7 +34,7 @@ public class Song extends Model<Song> {
     /**
      * 歌曲id
      */
-    @TableId("song_id")
+    @TableId(value = "song_id", type = IdType.INPUT)
     private String songId;
 
     /**
@@ -41,6 +46,7 @@ public class Song extends Model<Song> {
     /**
      * 排序id
      */
+    @JsonIgnore
     @TableField("sort_id")
     private String sortId;
 
@@ -59,6 +65,7 @@ public class Song extends Model<Song> {
     /**
      * 封面图
      */
+    @JsonIgnore
     @TableField("thumbnail")
     private String thumbnail;
 
@@ -77,30 +84,35 @@ public class Song extends Model<Song> {
     /**
      * 评论量
      */
+    @JsonIgnore
     @TableField("comment_count")
     private Integer commentCount;
 
     /**
      * 收藏量
      */
+    @JsonIgnore
     @TableField("like_count")
     private Integer likeCount;
 
     /**
      * 播放量
      */
+    @JsonIgnore
     @TableField("play_count")
     private Integer playCount;
 
     /**
      * 删除标志
      */
+    @JsonIgnore
     @TableField("delete_flag")
     private String deleteFlag;
 
     /**
      * 修改时间
      */
+    @JsonIgnore
     @TableField("update_time")
     private LocalDateTime updateTime;
 

@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author yhChen
@@ -29,9 +29,14 @@ public class SongListController {
     @Resource
     private SongListService songListService;
 
-    @GetMapping("/type")
-    public List<Map<String, Object>> getByType(){
-        return songListService.getByType();
+    @GetMapping("/list")
+    public List<Map<String, Object>> selectAll() {
+        return songListService.selectAll();
+    }
+
+    @GetMapping("/page")
+    public List<SongList> getByPage(@Param("currentPage") int currentPage, @Param("size") int size) {
+        return songListService.getByPage(currentPage, size);
     }
 
     @GetMapping("/blur")
@@ -39,28 +44,9 @@ public class SongListController {
         return songListService.blurSelect(field);
     }
 
-    @GetMapping("/list")
-    public List<SongList> selectAll() {
-        return songListService.selectAll();
+    @GetMapping("/type")
+    public List<Map<String, Object>> getByType() {
+        return songListService.getByType();
     }
 
-    @PostMapping("/page")
-    public List<SongList> getSongListByPage(@RequestBody PageDto pageDto){
-        return songListService.getByPage(pageDto);
-    }
-
-    @DeleteMapping("/delete")
-    ResponseResult deleteSongListById(@Param("id") String id){
-        return songListService.deleteSongList(id);
-    }
-
-    @PutMapping("/update")
-    ResponseResult updateSongList(@RequestBody SongList songList){
-        return songListService.updateSongList(songList);
-    }
-
-    @DeleteMapping("/batchDelete")
-    ResponseResult batchDeleteById(@Param("ids") String ids){
-        return songListService.batchDeleteById(ids);
-    }
 }

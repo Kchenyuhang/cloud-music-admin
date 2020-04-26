@@ -20,35 +20,29 @@ import java.util.Map;
  */
 public interface SongListMapper extends BaseMapper<SongList> {
     /**
-     * 根据类型查询歌曲
-     *
+     * 查询所有歌单
+     * @return
+     */
+    List<Map<String, Object>> selectAll();
+
+    /**
+     * 分页查询
+     * @param current
+     * @param size
+     * @return
+     */
+    List<SongList> getByPage(int current, int size);
+
+    /**
+     * 根据类型分组
      * @return
      */
     List<Map<String, Object>> getByType();
 
     /**
-     * 根据（name，type）属性进行模糊查询
-     *
-     * @param field
+     * 模糊查询
+     * @param filed
      * @return
      */
-    List<SongList> blurSelect(String field);
-
-    /**
-     * 查询所有
-     * @return
-     */
-    @Select("SELECT * FROM song_list")
-    List<SongList> selectAll();
-
-    /***
-     * 模糊查询+分页查询
-     * @param pageDto
-     * @return
-     * @throws SQLException
-     */
-    @Select("SELECT * FROM song_list " +
-            "WHERE song_list_name LIKE CONCAT('%',#{pageDto.field},'%') OR type LIKE CONCAT('%',#{pageDto.field},'%') " +
-            "LIMIT ${pageDto.pageSize*(pageDto.currentPage-1)},#{pageDto.pageSize}")
-    List<SongList> searchSongList(@Param("pageDto") PageDto pageDto) throws SQLException;
+    List<SongList> blurSelect(String filed);
 }
