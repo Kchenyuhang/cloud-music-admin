@@ -59,15 +59,12 @@ public class SongListServiceImpl extends ServiceImpl<SongListMapper, SongList> i
         wrapper.select("type").groupBy("type").orderByDesc("play_counts");
         List<Map<String, Object>> maps = songListMapper.selectMaps(wrapper);
         for (Map<String, Object> map : maps) {
-//            if ("0".equals(map.get("type"))) {
-//                list().remove(map);
-//            }else {
             QueryWrapper<SongList> wrapper1 = new QueryWrapper<>();
             //根据父类的type类型查询属于该类型的数据
             wrapper1.orderByDesc("play_counts").eq("type", map.get("type"));
             List<Map<String, Object>> songLists = songListMapper.selectMaps(wrapper1);
             map.put("child", songLists);
-//            }
+
         }
         return maps;
     }
@@ -77,7 +74,7 @@ public class SongListServiceImpl extends ServiceImpl<SongListMapper, SongList> i
         QueryWrapper<SongList> wrapper = new QueryWrapper<>();
         //like = like %变量%, leftLike = like %变量 rightLike = like 变量%
         wrapper.like("song_list_name", field)
-                .or().like("type", field);
+                .or().like("type", field).orderByDesc("play_counts");
         return songListMapper.selectList(wrapper);
     }
 }

@@ -29,8 +29,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SongListServiceTest {
     @Resource
     private SongListService songListService;
-    @Resource
-    private SongListMapper songListMapper;
 
     @Test
     void selectAll() throws IOException {
@@ -41,12 +39,12 @@ class SongListServiceTest {
 
     @Test
     void getByPage() {
-        Page<SongList> page = new Page<>(1, 2, 10);
+        Page<SongList> page = new Page<>(1, 50);
         QueryWrapper<SongList> wrapper = new QueryWrapper<>(null);
         IPage<SongList> page1 = songListService.page(page, wrapper);
 //        System.out.println(page1.getRecords());
         page1.getRecords().forEach(System.out::println);
-        System.out.println("总页数" + page1.getTotal());
+        System.out.println("总页数" + page1.getPages());
     }
 
     @Test
