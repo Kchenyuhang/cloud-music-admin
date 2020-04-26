@@ -15,4 +15,40 @@ import java.util.Map;
  * @since 2020-04-21
  */
 public interface SongService extends IService<Song> {
+    /**
+     * 查询所有
+     *
+     * @return
+     */
+    List<Song> selectAll();
+
+    /**
+     * 分页查询歌曲
+     *
+     * @param current
+     * @param size
+     * @return
+     */
+    List<Song> getPage(int current, int size);
+
+    /**
+     * 模糊查
+     *
+     * @return
+     */
+    List<Song> getSongBy(String filed);
+
+    /**
+     * 查询一段时间内
+     *
+     * @return
+     */
+    List<Song> getSongByDate(String flag);
+
+    /**
+     * 批量插入
+     *
+     * @param songs
+     */
+    void batchInsert(List<Song> songs);
 }
