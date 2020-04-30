@@ -1,7 +1,7 @@
 package com.soft1851.music.admin.service.impl;
 
-import com.soft1851.music.admin.entity.SysMenu;
-import com.soft1851.music.admin.entity.SysRole;
+import com.soft1851.music.admin.domain.entity.SysMenu;
+import com.soft1851.music.admin.domain.entity.SysRole;
 import com.soft1851.music.admin.mapper.SysRoleMapper;
 import com.soft1851.music.admin.service.SysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -29,8 +29,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Resource
     private SysRoleMapper sysRoleMapper;
 
+    /**
+     * 根据角色id获取角色信息（基础信息和该角色所有菜单）
+     * @param roleId
+     * @return Map
+     */
     @Override
-    public Map selectRoleById(int roleId) {
+    public Map<String,Object> selectRoleById(int roleId) {
         SysRole sysRole = sysRoleMapper.selectRoleById(roleId);
         Map<String, Object> map = new TreeMap<>();
         map.put("roleName", sysRole.getRoleName());
@@ -38,10 +43,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         List<SysMenu> menus = sysRole.getMenus();
         for (SysMenu menu : menus) {
             if (menu.getParentId() == 0) {
-                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort(),new ArrayList<>());
                 list.add(treeNode);
             } else {
-                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(), menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(), menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort(),new ArrayList<>());
                 list.add(treeNode);
             }
         }

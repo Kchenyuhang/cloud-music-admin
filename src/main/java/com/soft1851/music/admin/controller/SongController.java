@@ -1,7 +1,7 @@
 package com.soft1851.music.admin.controller;
 
 
-import com.soft1851.music.admin.entity.Song;
+import com.soft1851.music.admin.domain.entity.Song;
 import com.soft1851.music.admin.service.SongService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -48,4 +48,10 @@ public class SongController {
         log.info(flag);
         return songService.getSongByDate(flag);
     }
+
+    @GetMapping(value = "/export")
+    public void exportData() {
+        songService.exportData();
+    }
+
 }

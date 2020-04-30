@@ -1,24 +1,18 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-
 import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableField;
-
 import java.io.Serializable;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author yhChen
@@ -27,68 +21,63 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_admin")
-public class SysAdmin extends Model<SysAdmin> {
+@TableName("song_like")
+public class SongLike extends Model<SongLike> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 点赞id
      */
-    @TableId("id")
-    private String id;
+    @TableId("like_id")
+    private String likeId;
 
     /**
-     * 用户名
+     * 点赞用户id
      */
-    @TableField("name")
-    private String name;
+    @TableField("user_id")
+    private String userId;
 
     /**
-     * 密码
+     * 歌曲id
      */
-    @JsonIgnore
-    @TableField("password")
-    private String password;
+    @TableField("song_id")
+    private String songId;
 
     /**
-     * 加密盐
+     * 评论id
      */
-    @JsonIgnore
-    @TableField("salt")
-    private String salt;
+    @TableField("comment_id")
+    private String commentId;
 
     /**
-     * 头像
+     * 视频id
      */
-    @TableField("avatar")
-    private String avatar;
+    @TableField("video_id")
+    private String videoId;
 
     /**
      * 创建时间
      */
-    @JsonIgnore
     @TableField("create_time")
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @JsonIgnore
     @TableField("update_time")
     private LocalDateTime updateTime;
 
     /**
-     * 账户状态：0 禁用 1 启用
+     * 歌单id
      */
-    @JsonIgnore
-    @TableField("status")
-    private Integer status;
+    @TableField("song_list_id")
+    private String songListId;
+
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.likeId;
     }
 
-    private List<SysRole> roles;
 }

@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.soft1851.music.admin.CloudMusicAdminApplication;
-import com.soft1851.music.admin.common.ResponseResult;
-import com.soft1851.music.admin.dto.PageDto;
-import com.soft1851.music.admin.entity.SongList;
-import com.soft1851.music.admin.mapper.SongListMapper;
+import com.soft1851.music.admin.domain.entity.SongList;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Author yhChen

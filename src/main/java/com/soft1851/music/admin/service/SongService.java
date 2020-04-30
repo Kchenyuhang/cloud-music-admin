@@ -1,10 +1,9 @@
 package com.soft1851.music.admin.service;
 
-import com.soft1851.music.admin.entity.Song;
+import com.soft1851.music.admin.domain.entity.Song;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -51,4 +50,9 @@ public interface SongService extends IService<Song> {
      * @param songs
      */
     void batchInsert(List<Song> songs);
+
+    /**
+     * 导出数据
+     */
+    void exportData();
 }

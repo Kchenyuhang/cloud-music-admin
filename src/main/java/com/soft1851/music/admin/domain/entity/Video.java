@@ -1,4 +1,4 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -21,28 +21,52 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("type_song_list")
-public class TypeSongList extends Model<TypeSongList> {
+@TableName("video")
+public class Video extends Model<Video> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 类型歌单id
+     * 视频id
      */
-    @TableId("id")
-    private String id;
+    @TableId("video_id")
+    private String videoId;
 
     /**
-     * 类型id
+     * 视频名称
      */
-    @TableField("type_id")
-    private String typeId;
+    @TableField("video_name")
+    private String videoName;
 
     /**
-     * 歌单id
+     * 视频时长
      */
-    @TableField("song_list_id")
-    private String songListId;
+    @TableField("duration")
+    private String duration;
+
+    /**
+     * 视频封面
+     */
+    @TableField("thumbnail")
+    private String thumbnail;
+
+    /**
+     * 评论数量
+     */
+    @TableField("comment_count")
+    private Integer commentCount;
+
+    /**
+     * 点赞数量
+     */
+    @TableField("like_count")
+    private Integer likeCount;
+
+    /**
+     * 播放数量
+     */
+    @TableField("play_count")
+    private Integer playCount;
 
     /**
      * 创建时间
@@ -56,16 +80,10 @@ public class TypeSongList extends Model<TypeSongList> {
     @TableField("update_time")
     private LocalDateTime updateTime;
 
-    /**
-     * 类型名称
-     */
-    @TableField("type_name")
-    private String typeName;
-
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.videoId;
     }
 
 }

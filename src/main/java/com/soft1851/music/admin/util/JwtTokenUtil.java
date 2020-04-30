@@ -5,7 +5,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.soft1851.music.admin.entity.SysRole;
+import com.soft1851.music.admin.domain.entity.SysRole;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.UnsupportedEncodingException;
@@ -28,7 +28,7 @@ public class JwtTokenUtil {
      * @param expiresAt
      * @return String
      */
-    public static String getToken(final String adminId, final String roles, Date expiresAt) {
+    public static String getToken(final String adminId, final String roles, final String secrect, Date expiresAt) {
         String token = null;
         try {
             token = JWT.create()
@@ -36,8 +36,8 @@ public class JwtTokenUtil {
                     .withClaim("adminId", adminId)
                     .withClaim("roles", roles)
                     .withExpiresAt(expiresAt)
-                    // 使用了HMAC256加密算法, mySecret是用来加密数字签名的密钥
-                    .sign(Algorithm.HMAC256("mySecret"));
+                    // 使用了HMAC256加密算法, secrect是用来加密数字签名的密钥
+                    .sign(Algorithm.HMAC256(secrect));
         } catch (UnsupportedEncodingException e) {
             log.error("不支持的编码格式");
         }
@@ -48,13 +48,14 @@ public class JwtTokenUtil {
      * 解密
      *
      * @param token
+     * @param secrect
      * @return DecodedJWT
      */
-    public static DecodedJWT deToken(final String token) {
+    public static DecodedJWT deToken(final String token, final String secrect) {
         DecodedJWT jwt;
         JWTVerifier verifier = null;
         try {
-            verifier = JWT.require(Algorithm.HMAC256("mySecret"))
+            verifier = JWT.require(Algorithm.HMAC256(secrect))
                     .withIssuer("auth0")
                     .build();
         } catch (UnsupportedEncodingException e) {
@@ -69,20 +70,22 @@ public class JwtTokenUtil {
      * 获取adminId
      *
      * @param token
+     *  @param secrect
      * @return String
      */
-    public static String getAdminId(String token) {
-        return deToken(token).getClaim("adminId").asString();
+    public static String getAdminId(final String token, final String secrect) {
+        return deToken(token, secrect).getClaim("adminId").asString();
     }
 
     /**
      * 获取roles
      *
      * @param token
+     * @param secrect
      * @return String
      */
-    public static String getRoles(String token) {
-        return deToken(token).getClaim("roles").asString();
+    public static String getRoles(final String token, final String secrect) {
+        return deToken(token, secrect).getClaim("roles").asString();
     }
 
     /**
@@ -91,8 +94,8 @@ public class JwtTokenUtil {
      * @param token
      * @return boolean
      */
-    public static boolean isExpiration(String token) {
-        return deToken(token).getExpiresAt().before(new Date());
+    public static boolean isExpiration(String token,final String secrect) {
+        return deToken(token,secrect).getExpiresAt().before(new Date());
     }
 
     public static void main(String[] args) {
@@ -101,13 +104,12 @@ public class JwtTokenUtil {
         List<SysRole> roles = new ArrayList<>();
         roles.add(role1);
         roles.add(role2);
-        String token = JwtTokenUtil.getToken("123456", JSONObject.toJSONString(roles), new Date(System.currentTimeMillis() + 60L * 1000L));
+        String token = JwtTokenUtil.getToken("123456", JSONObject.toJSONString(roles), "mySecrect", new Date(System.currentTimeMillis() + 60L * 1000L));
         System.out.println("JWT加密结果：");
         System.out.println(token);
-        String token1 = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6ImVkaXRvciIsImlzcyI6ImF1dGgwIiwiYWRtaW5JZCI6IjIyNTE2RkI2QTlEMzg5RDdGQzIxNDIwODA2MTUwQTdCIiwiZXhwIjoxNTg3NjQ0OTI3fQ.at3yykwVr4sv9F8o_Ir_ismnPQ7a4D7gVIUZuTVhG10";
         System.out.println("******解密*********");
-        System.out.println("adminId—————————" + JwtTokenUtil.getAdminId(token));
-        System.out.println("roles—————————" + JwtTokenUtil.getRoles(token));
+        System.out.println("adminId—————————" + JwtTokenUtil.getAdminId(token,"mySecrect"));
+        System.out.println("roles—————————" + JwtTokenUtil.getRoles(token,"mySecrect"));
     }
 
 }

@@ -1,10 +1,7 @@
 package com.soft1851.music.admin.controller;
 
 
-import com.soft1851.music.admin.common.ResponseResult;
-import com.soft1851.music.admin.dto.PageDto;
-import com.soft1851.music.admin.entity.SongList;
-import com.soft1851.music.admin.mapper.SongListMapper;
+import com.soft1851.music.admin.domain.entity.SongList;
 import com.soft1851.music.admin.service.SongListService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -49,4 +46,13 @@ public class SongListController {
         return songListService.getByType();
     }
 
+    @GetMapping(value = "/all")
+    public List<SongList> getSongList() {
+        return songListService.getTopSongList();
+    }
+
+    @GetMapping(value = "/export")
+    public void export() {
+        songListService.exportData();
+    }
 }
