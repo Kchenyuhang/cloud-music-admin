@@ -1,9 +1,13 @@
 package com.soft1851.music.admin.service;
 
+import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.domain.dto.LoginDto;
+import com.soft1851.music.admin.domain.dto.UpdateDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Map;
 
@@ -42,4 +46,12 @@ public interface SysAdminService extends IService<SysAdmin> {
      * @return String
      */
     String getToken(final String adminId, final String roles, final String secrect, Date expiresAt);
+
+    /**
+     * 修改个人信息数据
+     * @param updateDto
+     * @param file
+     * @return
+     */
+    ResponseResult updateSysAdmin(File file, UpdateDto updateDto);
 }

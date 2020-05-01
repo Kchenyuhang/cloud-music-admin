@@ -21,7 +21,6 @@ public enum ResultCode {
     CONNECTION_ERROR(10009, "网络连接错误"),
     ARITHMETIC_ERROR(100010, "计算错误"),
 
-
     /* 用户错误：20001-29999*/
     USER_INPUT_ERROR(20000, "用户名输入错误或验证码错误"),
     USER_NOT_SIGN_IN(20001, "请先登录"),
@@ -36,6 +35,7 @@ public enum ResultCode {
     USER_NO_AUTH(20019, "用户权限不足"),
     USER_TOKEN_EXPIRES(200010, "Token已过期"),
     USER_AUTH_ERROR(200011, "用户认证失败"),
+    USER_UPDATE_AVATAR_FAILURE(200012,"用户信息更新失败"),
 
     /* 业务错误：30001-39999 */
     SMS_ERROR(30001, "短信业务出现问题"),
@@ -47,6 +47,7 @@ public enum ResultCode {
     DATA_ALREADY_EXISTED(40003, "数据已存在"),
     DATABASE_ERROR(40004, "数据库操作异常"),
     DATA_EXPORT_ERROR(40005,"歌单数据导出异常"),
+    FILE_NOT_EXIST(40006,"文件不存在"),
 
 
     /* 服务器或系统错误：50001-599999 */

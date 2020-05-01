@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.URL;
 
 /**
  * <p>
@@ -61,6 +62,7 @@ public class SysAdmin extends Model<SysAdmin> {
     /**
      * 头像
      */
+    @URL(message = "头像不是链接的形式")
     @TableField("avatar")
     private String avatar;
 
