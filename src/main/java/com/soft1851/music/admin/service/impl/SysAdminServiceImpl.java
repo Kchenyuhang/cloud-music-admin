@@ -1,9 +1,11 @@
 package com.soft1851.music.admin.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.common.ResultCode;
 import com.soft1851.music.admin.domain.dto.LoginDto;
+import com.soft1851.music.admin.domain.dto.SysAdminDto;
 import com.soft1851.music.admin.domain.dto.UpdateDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
 import com.soft1851.music.admin.domain.entity.SysRole;
@@ -87,27 +89,30 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
     }
 
     @Override
-    public ResponseResult updateSysAdmin(File file, UpdateDto updateDto) {
-        SysAdmin sysAdmin1 = sysAdminMapper.getSysAdminById(updateDto.getId());
-
-        String pass = Md5Util.getMd5(updateDto.getPassword(),true,32);
-
-        String url = AliOssUtil.ossUpload(file);
-
-        SimpleDateFormat sdf = new SimpleDateFormat();
-        sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");
-        Date date = new Date();
-        Instant instant = date.toInstant();
-        ZoneId zoneId = ZoneId.systemDefault();
-        LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
-
-        sysAdmin1.setName(updateDto.getName());
-        sysAdmin1.setPassword(pass);
-        sysAdmin1.setAvatar(url);
-        sysAdmin1.setUpdateTime(localDateTime);
-        sysAdminMapper.updateById(sysAdmin1);
-        return ResponseResult.success(sysAdmin1);
+    public boolean updateInfo(SysAdminDto sysAdminDto) {
+        SysAdmin sysAdmin = sysAdminMapper.getSysAdminById(sysAdminDto.getId());
+        UpdateWrapper<SysAdmin> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", sysAdminDto.getId());
+        sysAdmin.setName(sysAdminDto.getName());
+        sysAdmin.setPassword(Md5Util.getMd5(sysAdminDto.getPassword(),true,32));
+        sysAdminMapper.update(sysAdmin,updateWrapper);
+        return true;
     }
 
+    @Override
+    public SysAdmin getSysAdminById(String id) {
+        return sysAdminMapper.getSysAdminById(id);
+    }
 
+    @Override
+    public boolean updateAvatar(SysAdminDto sysAdminDto) {
+        System.out.println(sysAdminDto);
+        SysAdmin sysAdmin = sysAdminMapper.getSysAdminById(sysAdminDto.getId());
+        UpdateWrapper<SysAdmin> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", sysAdminDto.getId());
+        sysAdmin.setAvatar(sysAdminDto.getAvatar());
+
+        sysAdminMapper.update(sysAdmin,updateWrapper);
+        return true;
+    }
 }

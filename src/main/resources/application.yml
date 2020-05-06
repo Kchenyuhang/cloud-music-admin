@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   # jackson配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
