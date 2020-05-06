@@ -1,10 +1,18 @@
 server:
   port: 8080
+
 spring:
   mvc:
     hiddenmethod:
       filter:
         enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 930f71fdbece9a36b028
+            clientSecret: 114d1e215c774ce2d4f76a69112568434d57f197
   # jackson配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -33,6 +41,7 @@ spring:
       connection-timeout: 30000
       # 连接测试查询语句
       connection-test-query: SELECT 1
+
   redis:
     database: 0
     password:
@@ -45,6 +54,7 @@ spring:
         max-active: 8
         max-wait: 1ms
       shutdown-timeout: 100ms
+
 #Mybatis-Plus配置
 mybatis-plus:
   # mapper映射文件路径
