@@ -170,7 +170,7 @@ public class ExcelUtil<T> {
             attr = field.getAnnotation(ExcelVoAttribute.class);
             cell = CellUtil.createCell(row, i, attr.name());
             // 设置列宽，根据相应的字段名的长度等比
-             sheet.setColumnWidth(i, attr.name().getBytes().length * 400);
+            sheet.setColumnWidth(i, attr.name().getBytes().length * 400);
         }
     }
 
@@ -190,5 +190,4 @@ public class ExcelUtil<T> {
         }
         return sortList;
     }
-
 }

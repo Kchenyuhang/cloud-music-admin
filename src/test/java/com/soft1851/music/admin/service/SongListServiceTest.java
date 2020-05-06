@@ -59,4 +59,9 @@ class SongListServiceTest {
         System.out.println(maps.size());
     }
 
+    @Test
+    void exportData() {
+        songListService.exportData();
+    }
+
 }

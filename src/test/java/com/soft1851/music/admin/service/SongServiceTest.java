@@ -47,4 +47,9 @@ class SongServiceTest {
     @Test
     void batchInsert() {
     }
+
+    @Test
+    void exportData() {
+        songService.exportData();
+    }
 }
