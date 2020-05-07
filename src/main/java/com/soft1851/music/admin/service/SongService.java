@@ -45,6 +45,12 @@ public interface SongService extends IService<Song> {
     List<Song> getSongByDate(String flag);
 
     /**
+     * 根据Id删除
+     * @param songId
+     */
+    void deleteById(String songId);
+
+    /**
      * 批量插入
      *
      * @param songs

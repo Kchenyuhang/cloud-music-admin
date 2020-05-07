@@ -85,6 +85,11 @@ public class SongListServiceImpl extends ServiceImpl<SongListMapper, SongList> i
     }
 
     @Override
+    public void deleteById(String songListId) {
+        System.out.println(songListMapper.deleteById(songListId));
+    }
+
+    @Override
     public List<SongList> getTopSongList() {
         QueryWrapper<SongList> queryWrapper = new QueryWrapper<>();
         queryWrapper.ge("song_count", 1000);

@@ -43,6 +43,11 @@ public class SongController {
         return songService.getSongBy(field);
     }
 
+    @GetMapping("/delete")
+    public void deleteById(@Param("songId") String songId) {
+        songService.deleteById(songId);
+    }
+
     @GetMapping("/paragraph")
     public List<Song> getSongByTime(@Param("flag") String flag) {
         log.info(flag);

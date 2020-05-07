@@ -46,6 +46,11 @@ public class SongListController {
         return songListService.getByType();
     }
 
+    @GetMapping("/delete")
+    public void deleteById(@Param("songListId") String songListId) {
+        songListService.deleteById(songListId);
+    }
+
     @GetMapping(value = "/all")
     public List<SongList> getSongList() {
         return songListService.getTopSongList();

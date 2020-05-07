@@ -87,6 +87,16 @@ public class SongServiceImpl extends ServiceImpl<SongMapper, Song> implements So
     }
 
     @Override
+    public void deleteById(String songId) {
+        int n = songMapper.deleteById(songId);
+        if (n == 1) {
+            System.out.println("删除成功");
+        } else {
+            System.out.println("删除失败");
+        }
+    }
+
+    @Override
     public void batchInsert(List<Song> songs) {
 
     }
