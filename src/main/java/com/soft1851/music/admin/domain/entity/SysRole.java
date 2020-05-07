@@ -47,10 +47,10 @@ public class SysRole extends Model<SysRole> {
     /**
      * 角色描述
      */
-    @JsonIgnore
     @TableField("description")
     private String description;
 
+    @TableField(exist = false)
     @JsonIgnore
     private List<SysMenu> menus;
 

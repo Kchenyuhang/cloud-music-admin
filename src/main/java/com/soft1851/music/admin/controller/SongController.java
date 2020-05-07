@@ -1,10 +1,12 @@
 package com.soft1851.music.admin.controller;
 
 
+import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.domain.entity.Song;
 import com.soft1851.music.admin.service.SongService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,9 +45,10 @@ public class SongController {
         return songService.getSongBy(field);
     }
 
-    @GetMapping("/delete")
-    public void deleteById(@Param("songId") String songId) {
-        songService.deleteById(songId);
+    @DeleteMapping("/delete")
+    public ResponseResult deleteById(@Param("songId") String songId) {
+        songService.removeById(songId);
+        return ResponseResult.success();
     }
 
     @GetMapping("/paragraph")

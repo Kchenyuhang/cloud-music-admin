@@ -1,6 +1,7 @@
 package com.soft1851.music.admin.controller;
 
 
+import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.domain.entity.SongList;
 import com.soft1851.music.admin.service.SongListService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,9 +47,10 @@ public class SongListController {
         return songListService.getByType();
     }
 
-    @GetMapping("/delete")
-    public void deleteById(@Param("songListId") String songListId) {
-        songListService.deleteById(songListId);
+    @DeleteMapping("/delete")
+    public ResponseResult deleteById(@Param("songListId") String songListId) {
+        songListService.removeById(songListId);
+        return ResponseResult.success();
     }
 
     @GetMapping(value = "/all")

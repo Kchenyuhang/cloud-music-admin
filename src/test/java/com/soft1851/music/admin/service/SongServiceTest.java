@@ -49,12 +49,6 @@ class SongServiceTest {
     }
 
     @Test
-    void deleteById() {
-        String songId = "4568751561";
-        songService.deleteById(songId);
-    }
-
-    @Test
     void exportData() {
         songService.exportData();
     }

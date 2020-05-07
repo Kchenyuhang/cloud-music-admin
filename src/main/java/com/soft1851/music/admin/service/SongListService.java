@@ -46,12 +46,6 @@ public interface SongListService extends IService<SongList> {
     List<SongList> blurSelect(String filed);
 
     /**
-     * 根据Id删除
-     * @param songListId
-     */
-    void deleteById(String songListId);
-
-    /**
      * 热门歌单
      *
      * @return
