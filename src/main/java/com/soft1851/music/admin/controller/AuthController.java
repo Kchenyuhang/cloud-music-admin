@@ -22,6 +22,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ import java.util.List;
  * @Date 2020/5/6
  */
 @RestController
-@RequestMapping(value = "/oauth2/code/github")
+@RequestMapping(value = "login/oauth2/code/github")
 @Slf4j
 public class AuthController {
 
@@ -86,7 +88,7 @@ public class AuthController {
             ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             assert sra != null;
             HttpServletResponse response = sra.getResponse();
-            response.sendRedirect("http://localhost:8099/#/auth?user=" + JSONObject.parseObject(user).getString("id"));
+            response.sendRedirect("http://localhost:8055/#/home?user=" + URLEncoder.encode(user, StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
