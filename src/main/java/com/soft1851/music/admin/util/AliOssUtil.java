@@ -37,8 +37,8 @@ public class AliOssUtil {
 
     public static String upload(File file) {
         String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
-        String accessKeyId = "LTAI41PGLwQKBcVF";
-        String accessKeySecret = "DBUGgiRLZqycwd6i4I5XfmeI47IpcB";
+        String accessKeyId = "LTAI**********KBcVF";
+        String accessKeySecret = "DBUG**************fmeI47IpcB";
         String bucketName = "student-manage99";
         String filePath = "avatar/";
         String fileName = file.getName();
